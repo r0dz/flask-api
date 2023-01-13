@@ -3,6 +3,12 @@ from app import db
 from flask import request, jsonify
 from ..models.users import Users, user_schema, users_schema
 
+def user_by_username(username):
+    try:
+        return Users.query.filter(Users.username == username).one()
+    except:
+        return None
+
 def get_user(id):
     user = Users.query.get(id)
     if user:
